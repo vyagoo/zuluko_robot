@@ -1,0 +1,18 @@
+package-$(CONFIG_PACKAGE_jpegdecodedemo) += liballwinner
+package-$(CONFIG_PACKAGE_kmod-i2c-gpio-custom) += i2c-gpio-custom
+package-$(CONFIG_PACKAGE_ldconfig) += toolchain
+package-$(CONFIG_PACKAGE_ldd) += toolchain
+package-$(CONFIG_PACKAGE_liballwinner) += liballwinner
+package-$(CONFIG_PACKAGE_libatomic) += toolchain
+package-$(CONFIG_PACKAGE_libc) += toolchain
+package-$(CONFIG_PACKAGE_libgcc) += toolchain
+package-$(CONFIG_PACKAGE_libgfortran) += toolchain
+package-$(CONFIG_PACKAGE_libpthread) += toolchain
+package-$(CONFIG_PACKAGE_librt) += toolchain
+package-$(CONFIG_PACKAGE_libssp) += toolchain
+package-$(CONFIG_PACKAGE_libstdcpp) += toolchain
+package-$(CONFIG_PACKAGE_libthread-db) += toolchain
+package-$(CONFIG_PACKAGE_mtop) += mtop
+
+$(curdir)/liballwinner/compile += $(curdir)/toolchain/compile $(if $(CONFIG_SSP_SUPPORT),$(curdir)/toolchain/compile) $(if $(CONFIG_USE_GLIBC),$(curdir)/toolchain/compile)
+$(curdir)/mtop/compile += $(curdir)/toolchain/compile $(if $(CONFIG_SSP_SUPPORT),$(curdir)/toolchain/compile) $(if $(CONFIG_USE_GLIBC),$(curdir)/toolchain/compile)

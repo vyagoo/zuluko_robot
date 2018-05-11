@@ -1,0 +1,29 @@
+Source-Makefile: target/vego/arbutus-zuluko/Makefile
+Target: arbutus-zuluko
+Target-Board: arbutus-zuluko
+Target-Name: arbutus-zuluko
+Target-Path: /home/celema/workspace/sdk/Vego_PI_zuluko_sdk/v1b6/Vego-SDK-arbutus-zuluko.Linux-x86_64
+Target-Arch: arm
+Target-Arch-Packages: sunxi
+Target-Features: display ext4 fpu gpio rtc usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -march=armv7-a -mtune=cortex-a7 -mfpu=neon
+CPU-Type: cortex-a7+neon
+Linux-Version: 3.4.39
+Linux-Release: 1
+Linux-Kernel-Arch: arm
+Target-Description:
+
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch   
+Target-Profile: 
+Target-Profile-Name: vego
+Target-Profile-Packages:  
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+
+@@
+
+

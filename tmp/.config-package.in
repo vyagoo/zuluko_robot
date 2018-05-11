@@ -1,0 +1,367 @@
+menuconfig IMAGEOPT
+	bool "Image configuration"
+	default n
+source "package/*/image-config.in"
+menu "Base system"
+
+	config PACKAGE_libatomic
+		tristate "libatomic......................................... Atomic support library"
+		default y if DEFAULT_libatomic
+		default m if ALL
+		select PACKAGE_libgcc
+		help
+		 Atomic support library
+		 http://gcc.gnu.org/
+		 Felix Fietkau <nbd@openwrt.org>
+
+
+		menu "Configuration"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libatomic
+	
+		config LIBATOMIC_ROOT_DIR
+			string
+			prompt "libatomic shared library base directory"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libatomic
+			default TOOLCHAIN_ROOT  if !NATIVE_TOOLCHAIN
+			default "/"  if NATIVE_TOOLCHAIN
+	
+		config LIBATOMIC_FILE_SPEC
+			string
+			prompt "libatomic shared library files (use wildcards)"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libatomic
+			default "./lib/libatomic.so.*"
+	
+		endmenu
+
+	config PACKAGE_libc
+		tristate "libc........................................................... C library"
+		default y if DEFAULT_libc
+		default m if ALL
+		select PACKAGE_libgcc
+		help
+		 C library
+		 Felix Fietkau <nbd@openwrt.org>
+
+
+		menu "Configuration"
+		depends on EXTERNAL_TOOLCHAIN && PACKAGE_libc
+	
+		config LIBC_ROOT_DIR
+			string
+			prompt "libc shared library base directory"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libc
+			default TOOLCHAIN_ROOT  if !NATIVE_TOOLCHAIN
+			default "/"  if NATIVE_TOOLCHAIN
+	
+		config LIBC_FILE_SPEC
+			string
+			prompt "libc shared library files (use wildcards)"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libc
+			default "./lib/ld{-*.so,-linux*.so.*} ./lib/lib{anl,c,cidn,crypt,dl,m,nsl,nss_dns,nss_files,resolv,util}{-*.so,.so.*}"
+	
+		endmenu
+
+	config PACKAGE_libgcc
+		tristate "libgcc............................................... GCC support library"
+		default y if DEFAULT_libgcc
+		default m if ALL
+		help
+		 GCC support library
+		 http://gcc.gnu.org/
+		 Felix Fietkau <nbd@openwrt.org>
+
+
+		menu "Configuration"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libgcc
+	
+		config LIBGCC_ROOT_DIR
+			string
+			prompt "libgcc shared library base directory"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libgcc
+			default TOOLCHAIN_ROOT  if !NATIVE_TOOLCHAIN
+			default "/"  if NATIVE_TOOLCHAIN
+	
+		config LIBGCC_FILE_SPEC
+			string
+			prompt "libgcc shared library files (use wildcards)"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libgcc
+			default "./lib/libgcc_s.so.*"
+	
+		endmenu
+
+	config PACKAGE_libgfortran
+		tristate "libgfortran..................................... GFortran support library"
+		default y if DEFAULT_libgfortran
+		default m if ALL
+		depends on INSTALL_GFORTRAN
+		help
+		 GFortran support library
+		 http://gcc.gnu.org/
+		 Felix Fietkau <nbd@openwrt.org>
+
+
+		menu "Configuration"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libgfortran
+	
+		config LIBGFORTRAN_ROOT_DIR
+			string
+			prompt "libgfortran shared library base directory"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libgfortran
+			default TOOLCHAIN_ROOT  if !NATIVE_TOOLCHAIN
+			default "/"  if NATIVE_TOOLCHAIN
+	
+		config LIBGFORTRAN_FILE_SPEC
+			string
+			prompt "libgfortran shared library files (use wildcards)"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libgfortran
+			default "./usr/lib/libgfortran.so.*"
+	
+		endmenu
+
+	config PACKAGE_libpthread
+		tristate "libpthread.......................................... POSIX thread library"
+		default y if DEFAULT_libpthread
+		default m if ALL
+		select PACKAGE_libgcc
+		help
+		 POSIX thread library
+		 Felix Fietkau <nbd@openwrt.org>
+
+
+		menu "Configuration"
+		depends on EXTERNAL_TOOLCHAIN && PACKAGE_libpthread
+	
+		config LIBPTHREAD_ROOT_DIR
+			string
+			prompt "libpthread shared library base directory"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libpthread
+			default TOOLCHAIN_ROOT  if !NATIVE_TOOLCHAIN
+			default "/"  if NATIVE_TOOLCHAIN
+	
+		config LIBPTHREAD_FILE_SPEC
+			string
+			prompt "libpthread shared library files (use wildcards)"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libpthread
+			default "./lib/libpthread{-*.so,.so.*}"
+	
+		endmenu
+
+	config PACKAGE_librt
+		tristate "librt................................ POSIX.1b RealTime extension library"
+		default y if DEFAULT_librt
+		default m if ALL
+		select PACKAGE_libpthread
+		help
+		 POSIX.1b RealTime extension library
+		 Felix Fietkau <nbd@openwrt.org>
+
+
+		menu "Configuration"
+		depends on EXTERNAL_TOOLCHAIN && PACKAGE_librt
+	
+		config LIBRT_ROOT_DIR
+			string
+			prompt "librt shared library base directory"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_librt
+			default TOOLCHAIN_ROOT  if !NATIVE_TOOLCHAIN
+			default "/"  if NATIVE_TOOLCHAIN
+	
+		config LIBRT_FILE_SPEC
+			string
+			prompt "librt shared library files (use wildcards)"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_librt
+			default "./lib/librt{-*.so,.so.*}"
+	
+		endmenu
+
+	config PACKAGE_libssp
+		tristate "libssp............................................... GCC support library"
+		default y if DEFAULT_libssp
+		default m if ALL
+		depends on SSP_SUPPORT
+		help
+		 GCC support library
+		 http://gcc.gnu.org/
+		 Felix Fietkau <nbd@openwrt.org>
+
+
+		menu "Configuration"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libssp
+	
+		config LIBSSP_ROOT_DIR
+			string
+			prompt "libssp shared library base directory"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libssp
+			default TOOLCHAIN_ROOT  if !NATIVE_TOOLCHAIN
+			default "/"  if NATIVE_TOOLCHAIN
+	
+		config LIBSSP_FILE_SPEC
+			string
+			prompt "libssp shared library files (use wildcards)"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libssp
+			default "./lib/libssp.so.*"
+	
+		endmenu
+
+	config PACKAGE_libstdcpp
+		tristate "libstdcpp.................................... GNU Standard C++ Library v3"
+		default y if DEFAULT_libstdcpp
+		default m if ALL
+		help
+		 GNU Standard C++ Library v3
+		 http://gcc.gnu.org/
+		 Felix Fietkau <nbd@openwrt.org>
+
+
+		menu "Configuration"
+		depends on EXTERNAL_TOOLCHAIN && PACKAGE_libstdcpp
+	
+		config LIBSTDCPP_ROOT_DIR
+			string
+			prompt "libstdcpp shared library base directory"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libstdcpp
+			default TOOLCHAIN_ROOT  if !NATIVE_TOOLCHAIN
+			default "/"  if NATIVE_TOOLCHAIN
+	
+		config LIBSTDCPP_FILE_SPEC
+			string
+			prompt "libstdc++ shared library files (use wildcards)"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libstdcpp
+			default "./lib/libstdc++.so.*"
+	
+		endmenu
+
+	config PACKAGE_libthread-db
+		tristate "libthread-db...................... POSIX thread library debugging support"
+		default y if DEFAULT_libthread-db
+		default m if ALL
+		depends on !USE_MUSL
+		help
+		 POSIX thread library debugging support
+		 Felix Fietkau <nbd@openwrt.org>
+
+endmenu
+
+menu "Kernel modules"
+
+menu "I2C support"
+	config PACKAGE_kmod-i2c-gpio-custom
+		tristate "kmod-i2c-gpio-custom........................ Custom GPIO-based I2C device"
+		default y if DEFAULT_kmod-i2c-gpio-custom
+		default m if ALL_KMODS
+		select PACKAGE_kmod-i2c-core
+		depends on GPIO_SUPPORT
+		select PACKAGE_kmod-i2c-gpio
+		help
+		 Kernel module for register a custom i2c-gpio platform device.
+		 
+
+endmenu
+endmenu
+
+menu "Utilities"
+
+	config PACKAGE_ldconfig
+		tristate "ldconfig............................... Shared library path configuration"
+		default y if DEFAULT_ldconfig
+		default m if ALL
+		depends on !USE_MUSL
+		help
+		 Shared library path configuration
+		 Felix Fietkau <nbd@openwrt.org>
+
+
+		menu "Configuration"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_ldconfig
+	
+		config LDCONFIG_ROOT_DIR
+			string
+			prompt "ldconfig base directory"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_ldconfig
+			default TOOLCHAIN_ROOT  if !NATIVE_TOOLCHAIN
+			default "/"  if NATIVE_TOOLCHAIN
+	
+		config LDCONFIG_FILE_SPEC
+			string
+			prompt "ldconfig file"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_ldconfig
+			default "./sbin/ldconfig"
+	
+		endmenu
+
+	config PACKAGE_ldd
+		tristate "ldd.................................................... LDD trace utility"
+		default y if DEFAULT_ldd
+		default m if ALL
+		depends on !USE_MUSL
+		help
+		 LDD trace utility
+		 Felix Fietkau <nbd@openwrt.org>
+
+
+		menu "Configuration"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_ldd
+	
+		config LDD_ROOT_DIR
+			string
+			prompt "ldd trace utility base directory"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_ldd
+			default TOOLCHAIN_ROOT  if !NATIVE_TOOLCHAIN
+			default "/"  if NATIVE_TOOLCHAIN
+	
+		config LDD_FILE_SPEC
+			string
+			prompt "ldd trace utility file"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_ldd
+			default "./usr/bin/ldd"
+	
+		endmenu
+
+endmenu
+
+menu "Vego"
+
+	config PACKAGE_jpegdecodedemo
+		tristate "jpegdecodedemo............ CedarX2.6 tina jpeg decode utils for allwinner"
+		default y if DEFAULT_jpegdecodedemo
+		default m if ALL
+		select PACKAGE_libc
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_liballwinner
+		select PACKAGE_libpthread if USE_GLIBC
+		help
+		 CedarX2.6 tina jpeg decode
+		 
+
+	config PACKAGE_liballwinner
+		tristate "liballwinner.................................... CedarX2.6  for allwinner"
+		default y if DEFAULT_liballwinner
+		default m if ALL
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_alsa-lib
+		select PACKAGE_zlib
+		select PACKAGE_libstdcpp
+		select PACKAGE_libopenssl
+		select PACKAGE_libpthread
+		select PACKAGE_libc
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 CedarX2.6
+		 
+
+	config PACKAGE_mtop
+		tristate "mtop................................................. mtop for vego linux"
+		default y if DEFAULT_mtop
+		default m if ALL
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libc
+		help
+		 it comes from Android 4.2!!
+		 
+
+endmenu
+

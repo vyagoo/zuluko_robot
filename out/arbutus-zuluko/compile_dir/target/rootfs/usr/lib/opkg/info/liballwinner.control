@@ -1,0 +1,8 @@
+Package: liballwinner
+Version: 1-1
+Depends: libc, libpthread, libopenssl, libstdcpp, zlib, alsa-lib
+Source: package/liballwinner
+Section: utils
+Architecture: sunxi
+Installed-Size: 1843328
+Description:  CedarX2.6

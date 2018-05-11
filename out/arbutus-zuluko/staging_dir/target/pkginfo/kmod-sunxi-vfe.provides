@@ -1,0 +1,6 @@
+cci.ko
+vfe_os.ko
+vfe_subdev.ko
+vfe_v4l2.ko
+videobuf-core.ko
+videobuf-dma-contig.ko

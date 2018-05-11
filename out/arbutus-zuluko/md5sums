@@ -1,0 +1,5 @@
+2dbf68e1d13143276cf15b373df2e9ff *arbutus-zuluko-uImage
+915be18c365fc81cea18021ba5a85efd *boot.img
+a5bc22d2ca5fce30fc86b1ba75404883 *rootfs.img
+03060d7bb57cf791ae00b59c4ed636df *sha256sums
+af02fbed74ca294ba6ff03ac74166a03 *vego_arbutus-zuluko_uart0.img

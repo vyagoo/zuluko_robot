@@ -1,0 +1,6 @@
+videobuf-core
+videobuf-dma-contig
+cci
+vfe_os
+vfe_subdev
+vfe_v4l2

@@ -1,0 +1,19 @@
+#
+# Author: Lasse Collin
+#
+# This file has been put into the public domain.
+# You can do whatever you want with this file.
+#
+
+prefix=/home/celema/workspace/sdk/Vego_PI_zuluko/vego/out/host
+exec_prefix=/home/celema/workspace/sdk/Vego_PI_zuluko/vego/out/host
+libdir=/home/celema/workspace/sdk/Vego_PI_zuluko/vego/out/host/lib
+includedir=/home/celema/workspace/sdk/Vego_PI_zuluko/vego/out/host/include
+
+Name: liblzma
+Description: General purpose data compression library
+URL: http://tukaani.org/xz/
+Version: 5.2.2
+Cflags: -I${includedir}
+Libs: -L${libdir} -llzma
+Libs.private: -pthread 

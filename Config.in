@@ -1,0 +1,9 @@
+config MODULES
+	bool
+	default y
+	option modules
+
+source "tmp/.config-target.in"
+source "Config-images.in"
+source "Config-build.in"
+source "tmp/.config-package.in"

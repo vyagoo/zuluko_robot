@@ -1,0 +1,7 @@
+./
+./usr
+./usr/include
+./usr/include/rtsp_server_live.h
+./usr/lib
+./usr/lib/libmediaserver.so
+./host

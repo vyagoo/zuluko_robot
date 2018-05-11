@@ -1,0 +1,7 @@
+./
+./usr
+./usr/include
+./usr/include/wifi_intf.h
+./usr/lib
+./usr/lib/libwifimg.so
+./host

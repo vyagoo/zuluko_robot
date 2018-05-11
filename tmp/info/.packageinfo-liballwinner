@@ -1,0 +1,34 @@
+Source-Makefile: package/liballwinner/Makefile
+Package: liballwinner
+Version: 1-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +libopenssl +libstdcpp +zlib +alsa-lib
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Vego
+Title: CedarX2.6  for allwinner
+Maintainer: 
+Source: 
+Type: ipkg
+Description: 	CedarX2.6
+
+@@
+
+Package: jpegdecodedemo
+Version: 1-1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +liballwinner
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Vego
+Title: CedarX2.6 tina jpeg decode utils for allwinner
+Maintainer: 
+Source: 
+Type: ipkg
+Description: 	CedarX2.6 tina jpeg decode
+
+@@
+
+
