@@ -306,10 +306,10 @@ uart_cts        = port:PA07<2><1><default><default>
 [spi0]
 spi_used       = 1
 spi_cs_bitmap  = 1
-spi_mosi       = port:PC00<3><default><default><default>
-spi_miso       = port:PC01<3><default><default><default>
-spi_sclk       = port:PC02<3><default><default><default>
-spi_cs0        = port:PC03<3><1><default><default>
+spi_mosi       = port:PC00<3><default><3><default>
+spi_miso       = port:PC01<3><default><3><default>
+spi_sclk       = port:PC02<3><default><3><default>
+spi_cs0        = port:PC03<3><1><3><default>
 
 [spi1]
 spi_used       = 0
